@@ -1,24 +1,20 @@
-name: Bitbake (main)
+name: Bitbake (main-headless-jre)
 on:
   push:
     branches:
-      - main
+      - main-headless-jre
   pull_request:
     branches:
-      - main
+      - main-headless-jre
 jobs:
   build:
     strategy:
       matrix:
-        recipe: [openjdk-8-jre, openjdk-11-jre, openjdk-17-jre, openjdk-21-jre]
-        machine: [qemuarm, qemuarm64, qemuriscv64, qemux86-64]
+        recipe: [openjdk-8-jre-headless]
+        machine: [qemuarm64, qemux86-64]
         exclude:
-          - recipe: openjdk-8-jre
-            machine: qemuriscv64
-          - recipe: openjdk-11-jre
-            machine: qemuriscv64
-          - recipe: openjdk-21-jre
-            machine: qemuarm
+          - recipe: openjdk-8-jre-headless
+            machine: qemuarm64
       max-parallel: 3
       fail-fast: false
     runs-on: ubuntu-22.04
@@ -53,7 +49,7 @@ jobs:
         run: |
           cd oe-core
           source oe-init-build-env build > /dev/null 2>&1
-          mv -v ../meta-openjdk-temurin/.github/workflows/bitbake-main-local.conf \
+          mv -v ../meta-openjdk-temurin/.github/workflows/bitbake-local_main-headless-jre.conf \
             conf/local.conf
       - name: Add layer to build-environment
         run: |
