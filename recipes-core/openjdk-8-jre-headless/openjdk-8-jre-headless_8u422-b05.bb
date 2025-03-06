@@ -6,10 +6,7 @@ COMPATIBLE_HOST = "(x86_64).*-linux"
 DEPENDS = "patchelf-native"
 
 JVM_CHECKSUM:x86-64 = "9a7a939638b9cdaa8e1a119b8f21bfdd4cb2390b8a47cc27ccf9effc90f4b437"
-JVM_RDEPENDS:x86-64 = " \
-  glibc (>= 2.17) \
-  libgcc (>= 4.2) \
-"
+JVM_RDEPENDS:x86-64 = " freetype (>= 2.11) glibc (>= 2.17) libgcc (>= 4.2) "
 
 RDEPENDS:${PN} = "${JVM_RDEPENDS}"
 
